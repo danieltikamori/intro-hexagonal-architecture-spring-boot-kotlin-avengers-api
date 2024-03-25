@@ -41,12 +41,23 @@ Use API first approach.
 }
 ```
 
-## Design Arquitetural
+## Architectural Design
 
-- Camada de Aplicação (controllers, configs, exception handle, request e response dtos, bean validations)
-- Camada de Domínio (modelo avenger, interface repositório, serviço)
-- Camada de Infraestrutura (jpa repository, entidade avenger, proxy implementa interface repositorio e utiliza o jpa repositorio para comunicação com banco de dados)
-- Testes
+- Application Layer (controllers, configs, exception handle, request and response dtos, bean validations)
+- Domain Layer (avenger model, repository interface, service)
+- Infrastructure Layer (jpa repository, avenger entity, proxy implements repository interface and uses the jpa repository to communicate with the database)
+- Tests
+
+### Application Layer
+
+Create web.resource, request, response and its controllers.
+
+### Domain Layer
+
+Create Avenger, Repository interface.
+
+
+
 
 ### Flyway (db/migration)
 
@@ -164,7 +175,7 @@ spring:
     show-sql: false
 ```
 
-## Dcoker
+## Docker
 
 ### Environment Config
 
@@ -212,7 +223,7 @@ networks:
     driver: bridge
 ```
 
-### Script / Comandos
+### Script / Commands
 
 - `docker-compose -f backend-services.yaml up -d` (deploy) / `docker-compose -f backend-services.yaml down` (undeploy)
 
@@ -223,9 +234,10 @@ networks:
 
 ## Heroku
 
-- Criar app
-- Linkar com Github
-- Setar vairáveis de ambiente
+- Create app
+- Link with GitHub
+- Set environment variables
+- Deploy
 
 ### Procfile
 
