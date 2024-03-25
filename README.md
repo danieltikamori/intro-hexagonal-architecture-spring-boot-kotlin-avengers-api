@@ -1,6 +1,6 @@
 # Introduction to Hexagonal Architecture with Spring Boot and Kotlin - Avengers API
 
-Desenvolvimento de uma API utilizando SpringBoot + Kotlin com o intuito de cadastro de Vingadores.
+Development of an API using SpringBoot + Kotlin to register Avengers.
 
 ## Technologies / Frameworks / IDE
 
@@ -14,15 +14,18 @@ Desenvolvimento de uma API utilizando SpringBoot + Kotlin com o intuito de cadas
 - Java 8
 - Heroku
 
-## Criação do esqueleto do projeto
+## Creation of the project frame
 
 - https://start.spring.io/
 
-## Definir contrato API
+## Define the API contract
+
+Use API first approach.
 
 - https://editor.swagger.io/
 
-- Recurso `avenger`
+
+- Resource `avenger`
 - GET - 200 OK
 - GET {id}/detail - 200 OK ou 404 Not Found
 - POST - 201 Created ou 400 Bad Request
@@ -33,8 +36,8 @@ Desenvolvimento de uma API utilizando SpringBoot + Kotlin com o intuito de cadas
 {
   "nick": "spider-man",
   "person": "Peter Parker",
-  "description": "sobre poderes",
-  "history": "a história"
+  "description": "super powers",
+  "history": "the history"
 }
 ```
 
