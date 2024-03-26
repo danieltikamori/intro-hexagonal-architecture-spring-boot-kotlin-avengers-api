@@ -1,0 +1,13 @@
+spring:
+  #  profiles:
+  #    active: dev
+  jackson:
+    serialization:
+      indent-output: true
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:postgresql://localhost:5432/${DB_NAME:avengers_db}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:123456}
+  jpa:
+    show-sql: true

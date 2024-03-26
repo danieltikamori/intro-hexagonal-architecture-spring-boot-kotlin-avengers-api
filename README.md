@@ -65,6 +65,9 @@ Create AvengerRepository interface.
 
 Create AvengerService interface, AvengerServiceImpl or simply AvengerService.
 
+### Resources - profiles
+
+Create application.yaml, application-dev.yaml and application-heroku.yaml.
 
 
 ### Flyway (db/migration)
