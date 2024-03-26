@@ -1,4 +1,4 @@
-package cc.tkmr.avengers.avengersapi
+package cc.tkmr.avengers.api
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

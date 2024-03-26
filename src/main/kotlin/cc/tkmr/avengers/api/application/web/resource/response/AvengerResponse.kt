@@ -1,8 +1,9 @@
-package cc.tkmr.avengers.avengersapi.application.web.resource.response
+package cc.tkmr.avengers.api.application.web.resource.response
 
-import cc.tkmr.avengers.avengersapi.domain.avenger.Avenger
+import cc.tkmr.avengers.api.domain.avenger.Avenger
 
 data class AvengerResponse(
+    val id: Long?, // ? means nullable
     val nick: String,
     val person: String,
     val description: String?, // ? means nullable
@@ -12,6 +13,7 @@ data class AvengerResponse(
 {
     companion object {
         fun from(avenger: Avenger) = AvengerResponse(
+            id = avenger.id,
             nick = avenger.nick,
             person = avenger.person,
             description = avenger.description,

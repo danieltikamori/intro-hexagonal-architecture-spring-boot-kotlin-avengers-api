@@ -1,4 +1,4 @@
-package cc.tkmr.avengers.avengersapi
+package cc.tkmr.avengers.api
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

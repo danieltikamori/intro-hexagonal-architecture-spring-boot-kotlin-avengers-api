@@ -5,7 +5,7 @@ Development of an API using SpringBoot + Kotlin to register Avengers.
 ## Technologies / Frameworks / IDE
 
 - Intellij
-- SpringBoot 2.4.4
+- SpringBoot 3.2.4
 - Maven
 - Kotlin
 - SpringData JPA
@@ -34,6 +34,7 @@ Use API first approach.
 
 ```json
 {
+  "id": 1,
   "nick": "spider-man",
   "person": "Peter Parker",
   "description": "super powers",
@@ -54,8 +55,15 @@ Create web.resource, request, response and its controllers.
 
 ### Domain Layer
 
-Create Avenger, Repository interface.
+Create Avenger class.
 
+### Repository Layer
+
+Create AvengerRepository interface.
+
+### Service Layer
+
+Create AvengerService interface, AvengerServiceImpl or simply AvengerService.
 
 
 
