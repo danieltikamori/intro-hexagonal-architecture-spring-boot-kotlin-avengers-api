@@ -72,6 +72,10 @@ Create application.yaml, application-dev.yaml and application-heroku.yaml.
 
 ### Flyway (db/migration)
 
+At resources/db.migration, create a file following this convention:
+Vyyyymmddhhmmss__create_avenger_table.sql
+V year month day hour minute second __ create avenger table
+
 ```sql
 create table avenger (
     id bigserial not null,
@@ -239,6 +243,8 @@ networks:
 - `docker-compose -f backend-services.yaml up -d` (deploy) / `docker-compose -f backend-services.yaml down` (undeploy)
 
 - Start API
+
+`start_api.sh`
 ```sh
 ./mvnw spring-boot:run -Dspring-boot.run.profiles=dev -Dspring-boot.run.jvmArguments="-Xmx256m -Xms128m" -Dspring-boot.run.arguments="'--DB_USER=dio.avenger' '--DB_PASSWORD=dio.avenger' '--DB_NAME=avengers'"
 ``` 
