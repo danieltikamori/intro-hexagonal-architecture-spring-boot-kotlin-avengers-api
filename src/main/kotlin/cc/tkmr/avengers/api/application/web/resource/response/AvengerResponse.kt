@@ -12,12 +12,14 @@ data class AvengerResponse(
 // Static factory method
 {
     companion object {
-        fun from(avenger: Avenger) = AvengerResponse(
-            id = avenger.id,
-            nick = avenger.nick,
-            person = avenger.person,
-            description = avenger.description,
-            history = avenger.history
-        )
+        fun from(avenger: Avenger?) = avenger?.let {
+            AvengerResponse(
+                id = avenger.id,
+                nick = it.nick,
+                person = avenger.person,
+                description = avenger.description,
+                history = avenger.history
+            )
+        }
     }
 }

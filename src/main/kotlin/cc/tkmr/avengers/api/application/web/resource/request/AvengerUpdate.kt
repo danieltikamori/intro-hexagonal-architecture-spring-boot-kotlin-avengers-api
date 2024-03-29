@@ -11,11 +11,19 @@ data class AvengerUpdate (
     val desc: String?,
     val history: String?
 ) {
-    fun toEntity(avenger: Avenger): Avenger {
-        avenger.nick = nick
-        avenger.person = person
-        avenger.description = desc
-        avenger.history = history
+    fun toEntity(avenger: Avenger?): Avenger? {
+        if (avenger != null) {
+            avenger.nick = nick
+        }
+        if (avenger != null) {
+            avenger.person = person
+        }
+        if (avenger != null) {
+            avenger.description = desc
+        }
+        if (avenger != null) {
+            avenger.history = history
+        }
 
         return avenger
     }
