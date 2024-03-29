@@ -67,33 +67,11 @@ Create AvengerService interface, AvengerServiceImpl or simply AvengerService.
 
 ### Resources - profiles
 
-Create application.yaml, application-dev.yaml and application-heroku.yaml.
+Create application.yaml, application-dev.yaml and application-heroku.yaml. Code below.
 
-
-### Flyway (db/migration)
-
-At resources/db.migration, create a file following this convention:
-Vyyyymmddhhmmss__create_avenger_table.sql
-V year month day hour minute second __ create avenger table
-
-```sql
-create table avenger (
-    id bigserial not null,
-    nick varchar(36),
-    person varchar(128),
-    description varchar(128),
-    history text,
-    primary key (id)
-);
-
-alter table avenger add constraint UK_5r88eemotwgru6k0ilqb2ledh unique (nick);
-```
-
-### Profiles
+#### Profiles
 
 - application.yaml
-- application-dev.yaml
-- application-heroku.yaml
 
 ```yaml
 spring:
@@ -156,6 +134,9 @@ server:
     context-path: /avengers
 ```
 
+- application-dev.yaml
+
+
 ```yaml
 spring:
   profiles:
@@ -172,6 +153,8 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
 ```
+
+- application-heroku.yaml
 
 ```yaml
 spring:
@@ -190,14 +173,35 @@ spring:
     show-sql: false
 ```
 
+### Flyway (db/migration)
+
+At resources/db.migration, create a file following this convention:
+Vyyyymmddhhmmss__create_avenger_table.sql
+V year month day hour minute second __ create avenger table
+
+```sql
+create table avenger (
+    id bigserial not null,
+    nick varchar(36),
+    person varchar(128),
+    description varchar(128),
+    history text,
+    primary key (id)
+);
+
+alter table avenger add constraint UK_5r88eemotwgru6k0ilqb2ledh unique (nick);
+```
+
 ## Docker
 
 ### Environment Config
 
+`.env`
+
 ```sh 
-DB_USER=dio.avenger
-DB_PASSWORD=dio.avenger
-DB_NAME=avengers
+DB_USER=tkmr.avenger
+DB_PASSWORD=tkmr.avenger
+DB_NAME=avengers_db
 ```
 
 ### YAML (backend-services.yaml)

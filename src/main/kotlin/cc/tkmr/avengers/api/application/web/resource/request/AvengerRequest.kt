@@ -15,8 +15,8 @@ data class AvengerRequest(
     @field:NotBlank
     @field:NotEmpty
     val person: String,
-    val description: String? = "", // Optional. Default is ""
-    val history: String? = ""
+    val description: String? = null, // Optional. Default is ""
+    val history: String? = null
 ) {
 
     fun toAvenger() = Avenger(
@@ -26,15 +26,14 @@ data class AvengerRequest(
         history = history
     )
 
-//    companion object {
-//        fun to(id: Long, request: AvengerRequest) = Avenger(
-//            id = id,
-//            nick = request.nick,
-//            person = request.person,
-//            description = request.description,
-//            history = request.history
-//
-//        )
-//        const val API_PATH = "/avengers"
-//    }
+    companion object {
+        fun to(id: Long, request: AvengerRequest) = Avenger(
+            id = id,
+            nick = request.nick,
+            person = request.person,
+            description = request.description,
+            history = request.history
+
+        )
+    }
 }
