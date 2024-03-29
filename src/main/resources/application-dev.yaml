@@ -11,3 +11,6 @@ spring:
     password: ${DB_PASSWORD:123456}
   jpa:
     show-sql: true
+
+# Environment variables must be set in advance and not in this file for security reasons
+# It is defined here for testing purposes
