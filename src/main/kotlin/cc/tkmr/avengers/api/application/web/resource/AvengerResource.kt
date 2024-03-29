@@ -53,7 +53,7 @@ class AvengerResource (
     ): ResponseEntity<AvengerResponse> {
         val avenger = this.avengerService.getDetail(id)
         val avengerToUpdate = avengerUpdate.toEntity(avenger)
-        val avengerUpdated = this.avengerService.createAvenger(avengerToUpdate)
+        val avengerUpdated = avengerToUpdate?.let { this.avengerService.createAvenger(it) }
         return ResponseEntity.status(HttpStatus.OK).body(AvengerResponse.from(avengerUpdated))
     }
 
