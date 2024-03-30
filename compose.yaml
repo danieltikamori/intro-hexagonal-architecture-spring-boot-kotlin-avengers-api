@@ -1,9 +1,0 @@
-services:
-  postgres:
-    image: 'postgres:latest'
-    environment:
-      - 'POSTGRES_DB=avengers_db'
-      - 'POSTGRES_PASSWORD=123456'
-      - 'POSTGRES_USER=postgres'
-    ports:
-      - '5432'
