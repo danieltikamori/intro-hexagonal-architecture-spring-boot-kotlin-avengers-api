@@ -1,8 +1,8 @@
 create table avenger (
                          id bigserial not null,
-                         nick varchar(36),
+                         nick varchar(128),
                          person varchar(128),
-                         description varchar(128),
+                         description varchar(255),
                          history text,
                          primary key (id)
 );
