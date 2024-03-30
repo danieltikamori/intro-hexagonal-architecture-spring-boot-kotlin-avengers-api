@@ -5,6 +5,7 @@ import jakarta.persistence.*
 
 // Entity class
 @Entity
+@Table(name = "avenger")
 class AvengerEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
