@@ -204,12 +204,12 @@ DB_PASSWORD=tkmr.avenger
 DB_NAME=avengers_db
 ```
 
-### YAML (backend-services.yaml)
+### YAML (avenger-api-resources.yaml)
 
 ```yaml
 version: '3.2'
 services:
-  postgres:
+  postgres-avengers:
     image: postgres:12-alpine
     environment:
       POSTGRES_USER: ${DB_USER}
@@ -223,15 +223,15 @@ services:
     networks:
       - postgres-compose-network
 
-  teste-pgadmin-compose:
+  pgadmin-avenger:
     image: dpage/pgadmin4
     environment:
-      PGADMIN_DEFAULT_EMAIL: "avengers@email.com"
-      PGADMIN_DEFAULT_PASSWORD: "123456"
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     ports:
       - "5556:80"
     depends_on:
-      - postgres
+      - postgres-avengers
     networks:
       - postgres-compose-network
 
@@ -244,14 +244,71 @@ networks:
 
 ### Script / Commands
 
-- `docker-compose -f backend-services.yaml up -d` (deploy) / `docker-compose -f backend-services.yaml down` (undeploy)
+- `cd docker`
+- `docker-compose -f avenger-api-resources.yaml up -d` (deploy) / `docker-compose -f avenger-api-resources.yaml down` (undeploy)
 
 - Start API
 
 `start_api.sh`
 ```sh
-./mvnw spring-boot:run -Dspring-boot.run.profiles=dev -Dspring-boot.run.jvmArguments="-Xmx256m -Xms128m" -Dspring-boot.run.arguments="'--DB_USER=dio.avenger' '--DB_PASSWORD=dio.avenger' '--DB_NAME=avengers'"
+./mvnw spring-boot:run -Dspring-boot.run.profiles=dev -Dspring-boot.run.jvmArguments="-Xmx256m -Xms128m" -Dspring-boot.run.arguments="'--DB_USER=postgres' '--DB_PASSWORD=123456' '--DB_NAME=avengers_db'"
 ``` 
+Run in the terminal:
+
+`sh start_api.sh`
+
+## Testing with Postman
+
+GET http://localhost:9090/avengers/v1/api/avenger
+Should not return anything.
+
+GET http://localhost:9090/avengers/v1/api/avenger/1/details
+Should return 404 error.
+
+POST http://localhost:9090/avengers/v1/api/avenger
+Body raw JSON:
+
+```json
+{
+  "nick": "spider-man",
+  "person": "Peter Parker",
+  "description": "super powers",
+  "history": "the history"
+}
+```
+
+Should return 201 Created - status code. It will assign automatically id = 1.
+
+GET http://localhost:9090/avengers/v1/api/avenger/1/details
+Should return 200 OK - status code.
+
+POST http://localhost:9090/avengers/v1/api/avenger
+Body raw JSON:
+
+```json
+{
+    "nick": "superman",
+    "person": "Clark Kent"
+}
+```
+
+Should return 201 Created - status code. As other fields can be null, it will work.
+
+POST http://localhost:9090/avengers/v1/api/avenger
+Body raw JSON:
+
+```json
+{
+  "nick": null,
+  "person": "Thor Odinson",
+  "description": "super powers",
+  "history": "the history"
+}
+```
+
+Should return Bad Request - status code. As null is not allowed.
+
+But strangely if we use "nick": "null", it should return 201 Created - status code.
 
 ## Heroku
 
