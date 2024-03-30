@@ -146,9 +146,9 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:25433/${DB_NAME}
-    username: ${DB_USER}
-    password: ${DB_PASSWORD}
+    url: jdbc:postgresql://localhost:25433/${DB_NAME:avengers_db}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:123456}
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
@@ -199,8 +199,8 @@ alter table avenger add constraint UK_5r88eemotwgru6k0ilqb2ledh unique (nick);
 `.env`
 
 ```sh 
-DB_USER=tkmr.avenger
-DB_PASSWORD=tkmr.avenger
+DB_USER=postgres
+DB_PASSWORD=123456
 DB_NAME=avengers_db
 ```
 
@@ -260,7 +260,7 @@ Run in the terminal:
 ## Testing with Postman
 
 GET http://localhost:9090/avengers/v1/api/avenger
-Should not return anything.
+Should not return anything relevant.
 
 GET http://localhost:9090/avengers/v1/api/avenger/1/details
 Should return 404 error.
@@ -292,7 +292,7 @@ Body raw JSON:
 }
 ```
 
-Should return 201 Created - status code. As other fields can be null, it will work.
+Should return 201 Created - status code. As other fields can be null, it will work. id = 2.
 
 POST http://localhost:9090/avengers/v1/api/avenger
 Body raw JSON:
@@ -309,6 +309,26 @@ Body raw JSON:
 Should return Bad Request - status code. As null is not allowed.
 
 But strangely if we use "nick": "null", it should return 201 Created - status code.
+
+PUT http://localhost:9090/avengers/v1/api/avenger/2
+Body raw JSON:
+```json
+   {
+        "nick": "Superman",
+        "person": "Clark Kent",
+        "description": "super strength",
+        "history": "From Krypton"
+    }
+```
+
+Should return 200 OK - status code.
+
+GET http://localhost:9090/avengers/v1/api/avenger/2/details
+Should return 200 OK - status code.
+
+DELETE http://localhost:9090/avengers/v1/api/avenger/2
+Body none.
+Should return 200 OK - status code.
 
 ## Heroku
 
