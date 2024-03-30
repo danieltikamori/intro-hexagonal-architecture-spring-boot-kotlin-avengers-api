@@ -8,7 +8,7 @@ data class AvengerUpdate (
     val nick: String,
     @field:NotEmpty
     val person: String,
-    val desc: String?,
+    val description: String?,
     val history: String?
 ) {
     fun toEntity(avenger: Avenger?): Avenger? {
@@ -19,7 +19,7 @@ data class AvengerUpdate (
             avenger.person = person
         }
         if (avenger != null) {
-            avenger.description = desc
+            avenger.description = description
         }
         if (avenger != null) {
             avenger.history = history
