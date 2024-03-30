@@ -10,6 +10,7 @@ spring:
     username: ${DB_USER:postgres}
     password: ${DB_PASSWORD:123456}
   jpa:
+#    Disable showing SQL queries in production environment!
     show-sql: true
 
 # Environment variables must be set in advance and not in this file for security reasons
