@@ -2,20 +2,14 @@ package cc.tkmr.avengers.api.application.web.resource.request
 
 import cc.tkmr.avengers.api.domain.avenger.Avenger
 import jakarta.validation.constraints.NotBlank
-import jakarta.validation.constraints.NotEmpty
-import jakarta.validation.constraints.NotNull
 import jakarta.validation.constraints.Size
 
 data class AvengerRequest(
     // Forces validation for nick and person
-    @field:NotNull
     @field:NotBlank
-    @field:NotEmpty
     @field:Size(max = 128)
     val nick: String,
-    @field:NotNull
     @field:NotBlank
-    @field:NotEmpty
     @field:Size(max = 128)
     val person: String,
     @field:Size(max = 255)
