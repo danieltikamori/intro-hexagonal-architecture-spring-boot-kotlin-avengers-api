@@ -1,4 +1,4 @@
-create table avenger (
+create table """$user"", public".avenger (
                          id bigserial not null,
                          nick varchar(128),
                          person varchar(128),
@@ -7,4 +7,4 @@ create table avenger (
                          primary key (id)
 );
 
-alter table avenger add constraint UK_5r88eemotwgru6k0ilqb2ledh unique (nick);
+alter table """$user"", public".avenger add constraint UK_5r88eemotwgru6k0ilqb2ledh unique (nick);
