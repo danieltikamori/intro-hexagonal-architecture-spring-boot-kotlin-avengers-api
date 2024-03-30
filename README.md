@@ -1,22 +1,35 @@
 # Introduction to Hexagonal Architecture with Spring Boot and Kotlin - Avengers API
 
-Development of an API using SpringBoot + Kotlin to register Avengers.
+Development of an API using SpringBoot + Kotlin to register Avengers characters.
 
 ## Technologies / Frameworks / IDE
 
 - Intellij
 - SpringBoot 3.2.4
 - Maven
-- Kotlin
+- Kotlin 1.9.23
 - SpringData JPA
 - PostgresSQL
+- Undertow - Tomcat alternative
 - Flyway
-- Java 8
+- Java 21
 - Heroku
 
 ## Creation of the project frame
 
 - https://start.spring.io/
+
+Add the starters:
+
+- spring-boot-starter-web
+- spring-boot-starter-validation
+- spring-boot-starter-data-jpa
+- spring-boot-starter-test
+- spring-boot-starter-undertow (manually)
+- spring-boot-starter-flyway
+- Kotlin
+
+Preferably see the pom.xml file.
 
 ## Define the API contract
 
@@ -24,13 +37,12 @@ Use API first approach.
 
 - https://editor.swagger.io/
 
-
 - Resource `avenger`
 - GET - 200 OK
-- GET {id}/detail - 200 OK ou 404 Not Found
-- POST - 201 Created ou 400 Bad Request
-- PUT {id} - 202 Accepted ou 404 Not Found
-- DELETE {id} - 202 Accepted ou 404 Not Found
+- GET {id}/detail - 200 OK or 404 Not Found
+- POST - 201 Created or 400 Bad Request
+- PUT {id} - 202 Accepted or 404 Not Found
+- DELETE {id} - 202 Accepted or 404 Not Found
 
 ```json
 {
@@ -244,10 +256,12 @@ networks:
 
 ### Script / Commands
 
+#### Run Docker to test
+
 - `cd docker`
 - `docker-compose -f avenger-api-resources.yaml up -d` (deploy) / `docker-compose -f avenger-api-resources.yaml down` (undeploy)
 
-- Start API
+#### Alternative to run the application: Start API
 
 `start_api.sh`
 ```sh
@@ -256,6 +270,12 @@ networks:
 Run in the terminal:
 
 `sh start_api.sh`
+
+### Procfile - For Heroku
+
+```text
+web: java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap $JAVA_OPTS -Dserver.port=$PORT -Dspring.profiles.active=heroku -jar target/*.jar
+```
 
 ## Testing with Postman
 
@@ -333,12 +353,32 @@ Should return 200 OK - status code.
 ## Heroku
 
 - Create app
-- Link with GitHub
 - Set environment variables
+- Link with GitHub
 - Deploy
 
-### Procfile
+## Create app
 
-```text
-web: java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap $JAVA_OPTS -Dserver.port=$PORT -Dspring.profiles.active=heroku -jar target/*.jar
-```
+  Create an app at https://dashboard.heroku.com/apps
+  Create a PostgresSQL database at Resources tab, Add-ons and search for PostgresSQL.
+  Copy the database credentials:
+  Host with port (example: host.com:5432), Database name, Username, Password
+
+## Set environment variables
+
+  Set environment variables at Heroku Settings, Config Vars and add the previously copied credentials.
+  The DATABASE_URL probably is already set in Heroku.
+  Use the same keys in this YAML file: HOST, DB_NAME, DB_USER, DB_PASSWORD
+
+## Link with GitHub
+  Grant access of the project GitHub repository to Heroku.
+  Deploy the project in Heroku:
+  Go to Deploy tab, Deploy method and select GitHub, set the repository URL.
+  Set your deployment preferences. It is possible to create pipeline manually.
+
+## Deploy
+
+  Deploy the project. It will provide a URL for the app and a link to the logs.
+  Open Postman or any other tool and paste the URL in the request URL field and test the app.
+  The app should work as expected.
+

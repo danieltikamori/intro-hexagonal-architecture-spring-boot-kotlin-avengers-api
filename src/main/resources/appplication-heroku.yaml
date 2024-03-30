@@ -11,3 +11,18 @@ spring:
     password: ${DB_PASSWORD}
   jpa:
     show-sql: false
+
+#    Create an app at https://dashboard.heroku.com/apps
+#    Create a PostgresSQL database at Resources tab, Add-ons and search for PostgresSQL
+#    Copy the database credentials:
+#    Host with port (example: host.com:5432), Database name, Username, Password
+#    Set environment variables at Heroku Settings, Config Vars and add the previously copied credentials.
+#    The DATABASE_URL probably is already set in Heroku.
+#    Use the same keys in this YAML file: HOST, DB_NAME, DB_USER, DB_PASSWORD
+#    Grant access of the project GitHub repository to Heroku.
+#    Deploy the project in Heroku:
+#    Go to Deploy tab, Deploy method and select GitHub, set the repository URL.
+#    Set your deployment preferences. It is possible to create pipeline manually.
+#    Deploy the project. It will provide a URL for the app and a link to the logs.
+#    Open Postman or any other tool and paste the URL in the request URL field and test the app.
+#    The app should work as expected.
