@@ -6,7 +6,7 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5432/${DB_NAME:avengers_db}
+    url: jdbc:postgresql://localhost:25433/${DB_NAME:avengers_db}
     username: ${DB_USER:postgres}
     password: ${DB_PASSWORD:123456}
   jpa:
